@@ -24,8 +24,8 @@ from voice import VoiceManager
 # The app heavily uses AgentClient to interact with the agent's FastAPI endpoints.
 
 
-APP_TITLE = "Agent Service Toolkit"
-APP_ICON = "🧰"
+APP_TITLE = "Smart AI Agent"
+APP_ICON = "🤖"
 USER_ID_COOKIE = "user_id"
 
 
@@ -139,7 +139,7 @@ async def main() -> None:
         st.header(f"{APP_ICON} {APP_TITLE}")
 
         ""
-        "Full toolkit for running an AI agent service built with LangGraph, FastAPI and Streamlit"
+        "基于LangGraph+FastAPI+Streamlit构建的智能AI助手"
         ""
 
         if st.button(":material/chat: New Chat", use_container_width=True):
@@ -258,9 +258,9 @@ async def main() -> None:
         if st.button(":material/upload: Share/resume chat", use_container_width=True):
             share_chat_dialog()
 
-        "[View the source code](https://github.com/JoshuaC215/agent-service-toolkit)"
+        "[View the source code](https://github.com/X-xue-wc/smart-ai-agent)"
         st.caption(
-            "Made with :material/favorite: by [Joshua](https://www.linkedin.com/in/joshua-k-carroll/) in Oakland"
+            "Made with :material/favorite: by [X-xue-wc](https://github.com/X-xue-wc)"
         )
 
     # Draw existing messages

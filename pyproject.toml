@@ -1,9 +1,9 @@
 [project]
-name = "agent-service-toolkit"
-version = "0.1.0"
-description = "Full toolkit for running an AI agent service built with LangGraph, FastAPI and Streamlit"
+name = "smart-ai-agent"
+version = "1.0.0"
+description = "基于LangGraph+FastAPI+Streamlit的智能AI助手，支持RAG知识库问答和多工具调用"
 readme = "README.md"
-authors = [{ name = "Joshua Carroll", email = "carroll.joshk@gmail.com" }]
+authors = [{ name = "薛伟成", email = "xueweicheng@example.com" }]
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: MIT License",
