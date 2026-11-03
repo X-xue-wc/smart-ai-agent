@@ -28,10 +28,31 @@ with st.sidebar:
     
     st.divider()
     
-    # API Key设置
-    api_key = st.text_input("通义千问 API Key", 
-                           value="sk-ws-H.PXRYXPI.wuGZ.MEQCIBpYBdIuru8fPXWEvsP58kJDvw-MXVwBVlj9GsscYaErAiA-DyOj3SWW-fGopogOfLFfw5kMM93sPhPh0e9TwPPPsw",
-                           type="password")
+    # 密码校验，只有输对密码才能看到Key
+    PASSWORD = "Xwc2024!"
+    if "auth_ok" not in st.session_state:
+        st.session_state.auth_ok = False
+    
+    if not st.session_state.auth_ok:
+        pwd = st.text_input("输入管理密码查看API配置", type="password")
+        if st.button("验证"):
+            if pwd == PASSWORD:
+                st.session_state.auth_ok = True
+                st.rerun()
+            else:
+                st.error("密码错误")
+    else:
+        st.success("✅ 已解锁API配置")
+        api_key = st.text_input("通义千问 API Key", 
+                               value="sk-ws-H.PXRYXPI.wuGZ.MEQCIBpYBdIuru8fPXWEvsP58kJDvw-MXVwBVlj9GsscYaErAiA-DyOj3SWW-fGopogOfLFfw5kMM93sPhPh0e9TwPPPsw",
+                               type="password")
+        if st.button("锁定配置"):
+            st.session_state.auth_ok = False
+            st.rerun()
+    
+    # 默认Key，未解锁时用这个
+    if "api_key" not in locals() or not st.session_state.auth_ok:
+        api_key = "sk-ws-H.PXRYXPI.wuGZ.MEQCIBpYBdIuru8fPXWEvsP58kJDvw-MXVwBVlj9GsscYaErAiA-DyOj3SWW-fGopogOfLFfw5kMM93sPhPh0e9TwPPPsw"
     
     st.divider()
     st.markdown("📁 [GitHub源码](https://github.com/X-xue-wc/smart-ai-agent)")
