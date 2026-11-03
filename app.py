@@ -17,7 +17,7 @@ st.set_page_config(
 
 # 标题
 st.title("🤖 Smart AI Agent")
-st.caption("基于LangChain + 通义千问构建的智能AI助手 | 作者：薛伟成")
+st.caption("基于LangChain + DeepSeek构建的智能AI助手 | 作者：薛伟成")
 
 # 侧边栏
 with st.sidebar:
@@ -43,8 +43,8 @@ with st.sidebar:
                 st.error("密码错误")
     else:
         st.success("✅ 已解锁API配置")
-        api_key = st.text_input("通义千问 API Key", 
-                               value="sk-ws-H.PXRYXPI.wuGZ.MEQCIBpYBdIuru8fPXWEvsP58kJDvw-MXVwBVlj9GsscYaErAiA-DyOj3SWW-fGopogOfLFfw5kMM93sPhPh0e9TwPPPsw",
+        api_key = st.text_input("DeepSeek API Key", 
+                               value="sk-9350e55d7bfa4fb69be2b217d7467dc1",
                                type="password")
         if st.button("锁定配置"):
             st.session_state.auth_ok = False
@@ -52,17 +52,17 @@ with st.sidebar:
     
     # 默认Key，未解锁时用这个
     if "api_key" not in locals() or not st.session_state.auth_ok:
-        api_key = "sk-ws-H.PXRYXPI.wuGZ.MEQCIBpYBdIuru8fPXWEvsP58kJDvw-MXVwBVlj9GsscYaErAiA-DyOj3SWW-fGopogOfLFfw5kMM93sPhPh0e9TwPPPsw"
+        api_key = "sk-9350e55d7bfa4fb69be2b217d7467dc1"
     
     st.divider()
     st.markdown("📁 [GitHub源码](https://github.com/X-xue-wc/smart-ai-agent)")
     st.markdown("👨‍💻 作者：薛伟成")
 
-# 初始化OpenAI客户端（指向通义千问）
+# 初始化OpenAI客户端（指向DeepSeek）
 def get_client():
     return OpenAI(
         api_key=api_key,
-        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1"
+        base_url="https://api.deepseek.com/v1"
     )
 
 # 初始化对话历史
@@ -130,9 +130,9 @@ if prompt := st.chat_input("输入你的问题..."):
                 
                 messages.append({"role": "user", "content": prompt})
                 
-                # 调用通义千问
+                # 调用DeepSeek
                 response = client.chat.completions.create(
-                    model="qwen-plus",
+                    model="deepseek-chat",
                     messages=messages,
                     temperature=0.7,
                     stream=False
