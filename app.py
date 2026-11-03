@@ -29,7 +29,7 @@ with st.sidebar:
     st.divider()
     
     # 密码校验，只有输对密码才能看到Key
-    PASSWORD = "Xwc2024!"
+    PASSWORD = "xwc2005"
     if "auth_ok" not in st.session_state:
         st.session_state.auth_ok = False
     
